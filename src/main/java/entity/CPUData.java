@@ -34,9 +34,7 @@ class CPUData {
 
     void increaseCPUIndex() throws CPUIndexOutOfBounds {
 
-        if (cpuIndex + 1 >= MAX_CPU_SIZE){
-            throw new CPUIndexOutOfBounds();
-        }
+        checkIndex(cpuIndex + 1);
         cpuIndex++;
     }
 
@@ -47,15 +45,24 @@ class CPUData {
         cpuIndex--;
     }
 
-    boolean isCpuOnCurrentIndexEqualsZero() {
+    boolean isCpuOnCurrentIndexEqualsZero() throws CPUIndexOutOfBounds {
+        checkIndex(cpuIndex);
         return cpu[cpuIndex] == 0;
     }
 
-    boolean isCpuOnCurrentIndexMoreThanZero() {
+    private void checkIndex(int cpuIndex) throws CPUIndexOutOfBounds {
+        if (cpuIndex >= MAX_CPU_SIZE) {
+            throw new CPUIndexOutOfBounds();
+        }
+    }
+
+    boolean isCpuOnCurrentIndexMoreThanZero() throws CPUIndexOutOfBounds {
+        checkIndex(cpuIndex);
         return cpu[cpuIndex] > 0;
     }
 
-    char getCurrentCPUChar() {
+    char getCurrentCPUChar() throws CPUIndexOutOfBounds {
+        checkIndex(cpuIndex);
         return cpu[cpuIndex];
     }
 

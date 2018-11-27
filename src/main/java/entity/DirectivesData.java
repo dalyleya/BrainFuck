@@ -25,9 +25,7 @@ class DirectivesData {
     }
 
     void increaseDirIndex() throws DirectivesIndexOutOfBoundsException {
-        if (dirIndex + 1 > directives.length) {
-            throw new DirectivesIndexOutOfBoundsException();
-        }
+        checkIndex(dirIndex + 1);
         dirIndex++;
     }
 
@@ -39,7 +37,14 @@ class DirectivesData {
         dirIndex--;
     }
 
-    char getDirectiveByCurrentIndex() {
+    private void checkIndex(int index) throws DirectivesIndexOutOfBoundsException {
+        if (index >= directives.length) {
+            throw new DirectivesIndexOutOfBoundsException();
+        }
+    }
+
+    char getDirectiveByCurrentIndex() throws DirectivesIndexOutOfBoundsException {
+        checkIndex(dirIndex);
         return directives[dirIndex];
     }
 

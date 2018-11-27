@@ -1,6 +1,7 @@
 package compiler.command;
 
 import compiler.exception.BFException;
+import compiler.exception.DirectivesIndexOutOfBoundsException;
 import entity.DecodeEntity;
 import org.junit.Assert;
 import org.junit.Before;
@@ -42,6 +43,27 @@ public class BFLeftBracketCommandTest {
 
         Assert.assertEquals("", responseEntity.getResponse());
         Assert.assertEquals(3, responseEntity.getDirIndex());
+        Assert.assertEquals(0, responseEntity.getCpuIndex());
+        Assert.assertEquals(0, responseEntity.getBracketCount());
+    }
+
+    @Test(expected = DirectivesIndexOutOfBoundsException.class)
+    public void throwExceptionIfBracketsNotCoupled() throws BFException {
+        char[] simpleDirectives = new char[]{'[', '>', '[', '+', ']', '+'};
+        DecodeEntity inputEntity = new DecodeEntity(simpleDirectives);
+        command.perform(inputEntity);
+    }
+
+    @Test
+    public void severalLevelsOfBracketsWorks() throws BFException {
+        char[] simpleDirectives = new char[]{'[', '[', '[', '+', ']', '-', ']', ']'};
+
+        DecodeEntity inputEntity = new DecodeEntity(simpleDirectives);
+
+        DecodeEntity responseEntity = command.perform(inputEntity);
+
+        Assert.assertEquals("", responseEntity.getResponse());
+        Assert.assertEquals(7, responseEntity.getDirIndex());
         Assert.assertEquals(0, responseEntity.getCpuIndex());
         Assert.assertEquals(0, responseEntity.getBracketCount());
     }

@@ -31,11 +31,11 @@ public class DecodeEntity {
         cpuData.decreaseCPUIndex();
     }
 
-    public boolean isCpuOnCurrentIndexEqualsZero() {
+    public boolean isCpuOnCurrentIndexEqualsZero() throws CPUIndexOutOfBounds {
         return cpuData.isCpuOnCurrentIndexEqualsZero();
     }
 
-    public boolean isCpuOnCurrentIndexMoreThanZero() {
+    public boolean isCpuOnCurrentIndexMoreThanZero() throws CPUIndexOutOfBounds {
         return cpuData.isCpuOnCurrentIndexMoreThanZero();
     }
 
@@ -71,7 +71,7 @@ public class DecodeEntity {
         dirData.decreaseDirIndex();
     }
 
-    public char getDirectiveByCurrentIndex() {
+    public char getDirectiveByCurrentIndex() throws DirectivesIndexOutOfBoundsException {
         return dirData.getDirectiveByCurrentIndex();
     }
 
@@ -111,7 +111,7 @@ public class DecodeEntity {
         return response.toString();
     }
 
-    public void appendCurrentCPUCharToResponse() {
+    public void appendCurrentCPUCharToResponse() throws CPUIndexOutOfBounds {
         response.append(cpuData.getCurrentCPUChar());
     }
 
