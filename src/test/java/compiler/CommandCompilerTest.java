@@ -2,6 +2,7 @@ package compiler;
 
 import compiler.exception.BFException;
 import compiler.exception.NegativeCPUValueException;
+import compiler.exception.UnknownBFDirectiveException;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -32,6 +33,11 @@ public class CommandCompilerTest {
     @Test(expected = NegativeCPUValueException.class)
     public void directivesBelowZeroThrowException() throws BFException {
         compiler.decode(TestHelpers.NEGATIVE_DIRECTIVE.toCharArray());
+    }
+
+    @Test(expected = UnknownBFDirectiveException.class)
+    public void directivesContainingWrongSymbolsThrowException() throws BFException {
+        compiler.decode(TestHelpers.UNKNOWN_SYMBOLS.toCharArray());
     }
 
 }
