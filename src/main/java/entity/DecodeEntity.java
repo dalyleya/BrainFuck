@@ -1,5 +1,10 @@
 package entity;
 
+import compiler.exception.BFException;
+import compiler.exception.CPUIndexOutOfBounds;
+import compiler.exception.NegativeCPUIndexException;
+import compiler.exception.NegativeCPUValueException;
+
 public class DecodeEntity {
     private CPUData cpuData;
     private DirectivesData dirData;
@@ -17,15 +22,15 @@ public class DecodeEntity {
         cpuData.increaseCPUByIndex();
     }
 
-    public void decreaseCPUByIndex() {
+    public void decreaseCPUByIndex() throws NegativeCPUValueException {
         cpuData.decreaseCPUByIndex();
     }
 
-    public void increaseCPUIndex() {
+    public void increaseCPUIndex() throws CPUIndexOutOfBounds {
         cpuData.increaseCPUIndex();
     }
 
-    public void decreaseCPUIndex() {
+    public void decreaseCPUIndex() throws NegativeCPUIndexException {
         cpuData.decreaseCPUIndex();
     }
 

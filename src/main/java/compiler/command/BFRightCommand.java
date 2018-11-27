@@ -1,5 +1,6 @@
 package compiler.command;
 
+import compiler.exception.CPUIndexOutOfBounds;
 import entity.DecodeEntity;
 
 /**
@@ -8,7 +9,7 @@ import entity.DecodeEntity;
  */
 public class BFRightCommand implements BFCommand {
 
-    public DecodeEntity perform(DecodeEntity entity) {
+    public DecodeEntity perform(DecodeEntity entity) throws CPUIndexOutOfBounds {
         entity.increaseCPUIndex();
         return entity;
     }

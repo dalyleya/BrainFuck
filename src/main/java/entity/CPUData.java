@@ -1,5 +1,9 @@
 package entity;
 
+import compiler.exception.CPUIndexOutOfBounds;
+import compiler.exception.NegativeCPUIndexException;
+import compiler.exception.NegativeCPUValueException;
+
 import java.util.Arrays;
 
 /**
@@ -10,9 +14,10 @@ import java.util.Arrays;
 public class CPUData {
     private char[] cpu;
     private int cpuIndex;
+    private static final int MAX_CPU_SIZE = 30000;
 
     public CPUData() {
-        cpu = new char[30000];
+        cpu = new char[MAX_CPU_SIZE];
         cpuIndex = 0;
     }
 
@@ -20,15 +25,25 @@ public class CPUData {
         cpu[cpuIndex]++;
     }
 
-    public void decreaseCPUByIndex() {
+    public void decreaseCPUByIndex() throws NegativeCPUValueException {
+        if (cpu[cpuIndex] <= 0) {
+            throw new NegativeCPUValueException();
+        }
         cpu[cpuIndex]--;
     }
 
-    public void increaseCPUIndex() {
+    public void increaseCPUIndex() throws CPUIndexOutOfBounds {
+
+        if (cpuIndex + 1 >= MAX_CPU_SIZE){
+            throw new CPUIndexOutOfBounds();
+        }
         cpuIndex++;
     }
 
-    public void decreaseCPUIndex() {
+    public void decreaseCPUIndex() throws NegativeCPUIndexException {
+        if (cpuIndex <= 0 ){
+            throw new NegativeCPUIndexException();
+        }
         cpuIndex--;
     }
 

@@ -1,5 +1,6 @@
 package compiler.command;
 
+import compiler.exception.BFException;
 import entity.DecodeEntity;
 import org.junit.Assert;
 import org.junit.Before;
@@ -15,13 +16,14 @@ public class BFLeftBracketCommandTest {
     }
 
     @Test
-    public void doNothingIfCurrentValueNotZero() {
+    public void doNothingIfCurrentValueNotZero() throws BFException {
         char[] simpleDirectives = new char[]{'+', '[', '>', '+', ']', '+'};
 
         DecodeEntity inputEntity = new DecodeEntity(simpleDirectives);
         inputEntity.setCpu(new char[]{1, 0, 0, 0, 0});
         inputEntity.setDirIndex(1);
         inputEntity.setCpuIndex(0);
+
         DecodeEntity responseEntity = command.perform(inputEntity);
 
         Assert.assertEquals("", responseEntity.getResponse());
@@ -31,10 +33,13 @@ public class BFLeftBracketCommandTest {
     }
 
     @Test
-    public void moveCursorIfCurrentValueZero() {
+    public void moveCursorIfCurrentValueZero() throws BFException {
         char[] simpleDirectives = new char[]{'[', '>', '+', ']', '+'};
+
         DecodeEntity inputEntity = new DecodeEntity(simpleDirectives);
+
         DecodeEntity responseEntity = command.perform(inputEntity);
+
         Assert.assertEquals("", responseEntity.getResponse());
         Assert.assertEquals(3, responseEntity.getDirIndex());
         Assert.assertEquals(0, responseEntity.getCpuIndex());

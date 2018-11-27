@@ -1,6 +1,6 @@
 import compiler.CommandCompiler;
 import compiler.Compiler;
-import compiler.MonolithCompiler;
+import compiler.exception.BFException;
 
 import java.util.Scanner;
 
@@ -9,8 +9,13 @@ public class Starter {
     public static void main(String[] args) {
         String bfDirectives = inputDataFromConsole();
         Compiler compiler = new CommandCompiler();
-        String response = compiler.decode(parseString(bfDirectives));
-        System.out.println("Compiled version is :\n" + response);
+        String response = null;
+        try {
+            response = compiler.decode(parseString(bfDirectives));
+        } catch (BFException e) {
+            System.out.printf("Wrong data inserted %s", e.getCause());
+        }
+        System.out.print("Compiled version is :\n" + response);
     }
 
     private static String inputDataFromConsole() {

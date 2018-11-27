@@ -15,7 +15,7 @@ public class BFRightBracketCommandTest {
     }
 
     @Test
-    public void moveCursorBackIfCurrentValueNotZero() {
+    public void moveCursorBackIfCurrentValueNotZero() throws Exception {
         char[] simpleDirectives = new char[]{'+', '[', '>', '+', ']', '+'};
 
         DecodeEntity inputEntity = new DecodeEntity(simpleDirectives);
@@ -32,7 +32,7 @@ public class BFRightBracketCommandTest {
     }
 
     @Test
-    public void doNothingIfCurrentValueZero() {
+    public void doNothingIfCurrentValueZero() throws Exception {
         char[] simpleDirectives = new char[]{'[', '>', '+', ']', '+'};
         DecodeEntity inputEntity = new DecodeEntity(simpleDirectives);
         inputEntity.setCpu(new char[]{0, 1, 0, 0, 0});

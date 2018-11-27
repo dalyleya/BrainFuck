@@ -1,6 +1,7 @@
 package compiler;
 
 import compiler.command.*;
+import compiler.exception.BFException;
 import entity.DecodeEntity;
 
 public class CommandCompiler implements Compiler {
@@ -13,7 +14,7 @@ public class CommandCompiler implements Compiler {
     private BFCommand dot = new BFDotCommand();
 
     @Override
-    public String decode(char[] directives) {
+    public String decode(char[] directives) throws BFException {
 
         DecodeEntity entity = new DecodeEntity(directives);
         while (entity.getDirIndex() < directives.length) {

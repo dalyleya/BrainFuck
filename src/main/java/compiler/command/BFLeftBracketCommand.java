@@ -1,5 +1,6 @@
 package compiler.command;
 
+import compiler.exception.BFException;
 import entity.DecodeEntity;
 
 /**
@@ -8,7 +9,7 @@ import entity.DecodeEntity;
  */
 public class BFLeftBracketCommand implements BFCommand {
 
-    public DecodeEntity perform(DecodeEntity entity) {
+    public DecodeEntity perform(DecodeEntity entity) throws BFException {
         if (entity.isCpuOnCurrentIndexEqualsZero()){
             entity.increaseBracketCounter();
             while (entity.hasMoreBrackets()){
