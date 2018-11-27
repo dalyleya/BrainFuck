@@ -1,29 +1,34 @@
 package entity;
 
-public class BracketCounter {
+import compiler.exception.NegativeBracketCountException;
+
+class BracketCounter {
     private int count = 0;
 
-    public boolean hasMoreBrackets() {
+    boolean hasMoreBrackets() {
         return count > 0;
     }
 
-    public boolean hasNoMoreBrackets() {
+    boolean hasNoMoreBrackets() {
         return count == 0;
     }
 
-    public void increaseBracketCounter() {
+    void increaseBracketCounter() {
         count++;
     }
 
-    public void decreaseBracketCounter() {
+    void decreaseBracketCounter() throws NegativeBracketCountException {
+        if (count <= 0){
+            throw new NegativeBracketCountException();
+        }
         count--;
     }
 
-    public int getCount() {
+    int getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    void setCount(int count) {
         this.count = count;
     }
 }

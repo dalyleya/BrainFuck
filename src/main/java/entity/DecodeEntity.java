@@ -1,9 +1,6 @@
 package entity;
 
-import compiler.exception.BFException;
-import compiler.exception.CPUIndexOutOfBounds;
-import compiler.exception.NegativeCPUIndexException;
-import compiler.exception.NegativeCPUValueException;
+import compiler.exception.*;
 
 public class DecodeEntity {
     private CPUData cpuData;
@@ -66,11 +63,11 @@ public class DecodeEntity {
         dirData.setDirIndex(dirIndex);
     }
 
-    public void increaseDirIndex() {
+    public void increaseDirIndex() throws DirectivesIndexOutOfBoundsException {
         dirData.increaseDirIndex();
     }
 
-    public void decreaseDirIndex() {
+    public void decreaseDirIndex() throws NegativeDirectiveIndexException {
         dirData.decreaseDirIndex();
     }
 
@@ -94,7 +91,7 @@ public class DecodeEntity {
         bracketCounter.increaseBracketCounter();
     }
 
-    public void decreaseBracketCounter() {
+    public void decreaseBracketCounter() throws NegativeBracketCountException {
         bracketCounter.decreaseBracketCounter();
     }
 

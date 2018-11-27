@@ -11,28 +11,28 @@ import java.util.Arrays;
  * Array maximum size is 30000 elements
  */
 
-public class CPUData {
+class CPUData {
     private char[] cpu;
     private int cpuIndex;
     private static final int MAX_CPU_SIZE = 30000;
 
-    public CPUData() {
+    CPUData() {
         cpu = new char[MAX_CPU_SIZE];
         cpuIndex = 0;
     }
 
-    public void increaseCPUByIndex() {
+    void increaseCPUByIndex() {
         cpu[cpuIndex]++;
     }
 
-    public void decreaseCPUByIndex() throws NegativeCPUValueException {
+    void decreaseCPUByIndex() throws NegativeCPUValueException {
         if (cpu[cpuIndex] <= 0) {
             throw new NegativeCPUValueException();
         }
         cpu[cpuIndex]--;
     }
 
-    public void increaseCPUIndex() throws CPUIndexOutOfBounds {
+    void increaseCPUIndex() throws CPUIndexOutOfBounds {
 
         if (cpuIndex + 1 >= MAX_CPU_SIZE){
             throw new CPUIndexOutOfBounds();
@@ -40,39 +40,39 @@ public class CPUData {
         cpuIndex++;
     }
 
-    public void decreaseCPUIndex() throws NegativeCPUIndexException {
+    void decreaseCPUIndex() throws NegativeCPUIndexException {
         if (cpuIndex <= 0 ){
             throw new NegativeCPUIndexException();
         }
         cpuIndex--;
     }
 
-    public boolean isCpuOnCurrentIndexEqualsZero() {
+    boolean isCpuOnCurrentIndexEqualsZero() {
         return cpu[cpuIndex] == 0;
     }
 
-    public boolean isCpuOnCurrentIndexMoreThanZero() {
+    boolean isCpuOnCurrentIndexMoreThanZero() {
         return cpu[cpuIndex] > 0;
     }
 
-    public char getCurrentCPUChar() {
+    char getCurrentCPUChar() {
         return cpu[cpuIndex];
     }
 
-    public void setCpu(char[] newCpu) {
-        cpu = new char[30000];
+    void setCpu(char[] newCpu) {
+        cpu = new char[MAX_CPU_SIZE];
         System.arraycopy(newCpu, 0, cpu, 0, newCpu.length);
     }
 
-    public void setCpuIndex(int cpuIndex) {
+    void setCpuIndex(int cpuIndex) {
         this.cpuIndex = cpuIndex;
     }
 
-    public int getCpuIndex() {
+    int getCpuIndex() {
         return cpuIndex;
     }
 
-    public char[] getCpu() {
+    char[] getCpu() {
         return Arrays.copyOf(cpu , cpu.length);
     }
 }

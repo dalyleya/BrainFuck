@@ -1,39 +1,49 @@
 package entity;
 
+import compiler.exception.DirectivesIndexOutOfBoundsException;
+import compiler.exception.NegativeDirectiveIndexException;
+
 /**
  * Contain array of BF directives and current index
  * Array considered to contain unlimited amount of elements ['+', '-', '<', '>', '.', '[', ']']
  */
-public class DirectivesData {
+class DirectivesData {
     private char[] directives;
     private int dirIndex;
 
-    public DirectivesData(char[] directives) {
+    DirectivesData(char[] directives) {
         this.directives = directives;
         dirIndex = 0;
     }
 
-    public int getDirIndex() {
+    int getDirIndex() {
         return dirIndex;
     }
 
-    public void setDirIndex(int dirIndex) {
+    void setDirIndex(int dirIndex) {
         this.dirIndex = dirIndex;
     }
 
-    public void increaseDirIndex() {
+    void increaseDirIndex() throws DirectivesIndexOutOfBoundsException {
+        if (dirIndex + 1 > directives.length) {
+            throw new DirectivesIndexOutOfBoundsException();
+        }
         dirIndex++;
     }
 
-    public void decreaseDirIndex() {
+    void decreaseDirIndex() throws NegativeDirectiveIndexException {
+
+        if (dirIndex - 1 < 0) {
+            throw new NegativeDirectiveIndexException();
+        }
         dirIndex--;
     }
 
-    public char getDirectiveByCurrentIndex() {
+    char getDirectiveByCurrentIndex() {
         return directives[dirIndex];
     }
 
-    public void setDirectives(char[] directives) {
+    void setDirectives(char[] directives) {
         this.directives = directives;
     }
 }
