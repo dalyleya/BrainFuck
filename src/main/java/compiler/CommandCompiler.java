@@ -2,6 +2,7 @@ package compiler;
 
 import compiler.command.*;
 import compiler.exception.BFException;
+import compiler.exception.UnknownBFDirectiveException;
 import entity.DecodeEntity;
 
 public class CommandCompiler implements Compiler {
@@ -47,6 +48,9 @@ public class CommandCompiler implements Compiler {
                 case ']':
                     rightBracket.perform(entity);
                     break;
+
+                default:
+                    throw new UnknownBFDirectiveException();
 
             }
             entity.increaseDirIndex();
